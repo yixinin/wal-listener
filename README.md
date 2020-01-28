@@ -60,5 +60,5 @@ and in particular `insert` and `update` data.
 You can start the container from the project folder (configuration file is required)
 
 ```
-docker run -v $(pwd)/config.yml:/app/config.yml ihippik/wal-listener:master
+docker run -v $(pwd)/config.yml:/app/config.yml ihippik/wal-listener:wal2json
 ```
