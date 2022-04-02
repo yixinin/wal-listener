@@ -8,8 +8,8 @@ import (
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/viper"
 
-	"github.com/ihippik/wal-listener/config"
-	"github.com/ihippik/wal-listener/listener"
+	"github.com/yixinin/wal-listener/config"
+	"github.com/yixinin/wal-listener/listener"
 )
 
 // logger log levels.

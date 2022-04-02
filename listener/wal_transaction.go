@@ -8,9 +8,9 @@ import (
 	"time"
 
 	"github.com/google/uuid"
-	"github.com/ihippik/wal-listener/config"
 	"github.com/jackc/pgx/pgtype"
 	"github.com/sirupsen/logrus"
+	"github.com/yixinin/wal-listener/config"
 )
 
 // ActionKind kind of action on WAL message.

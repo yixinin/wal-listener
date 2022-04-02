@@ -14,7 +14,7 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
 
-	"github.com/ihippik/wal-listener/config"
+	"github.com/yixinin/wal-listener/config"
 )
 
 var errSimple = errors.New("some err")

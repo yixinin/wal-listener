@@ -8,7 +8,7 @@ import (
 	"github.com/sirupsen/logrus"
 	"github.com/urfave/cli/v2"
 
-	"github.com/ihippik/wal-listener/listener"
+	"github.com/yixinin/wal-listener/listener"
 )
 
 // go build -ldflags "-X main.version=1.0.1" main.go

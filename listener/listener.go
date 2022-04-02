@@ -13,7 +13,7 @@ import (
 	"github.com/jackc/pgx"
 	"github.com/sirupsen/logrus"
 
-	"github.com/ihippik/wal-listener/config"
+	"github.com/yixinin/wal-listener/config"
 )
 
 const errorBufferSize = 100
