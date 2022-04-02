@@ -16,8 +16,11 @@ database:
   filter:
     tables:
       users:
-        - insert
-        - update
+        topic: datasync
+        actions:
+          - "insert"
+          - "update"
+          - "delete"
 nats:
   address: localhost:4222
   clusterID: test-cluster
