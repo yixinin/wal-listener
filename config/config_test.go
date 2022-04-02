@@ -11,7 +11,6 @@ func TestConfig_Validate(t *testing.T) {
 	type fields struct {
 		Listener ListenerCfg
 		Database DatabaseCfg
-		Nats     NatsCfg
 	}
 	tests := []struct {
 		name    string
@@ -34,12 +33,6 @@ func TestConfig_Validate(t *testing.T) {
 					User:     "usr",
 					Password: "pass",
 				},
-				Nats: NatsCfg{
-					Address:     "addr",
-					ClusterID:   "cluster",
-					ClientID:    "client",
-					TopicPrefix: "prefix",
-				},
 			},
 			wantErr: nil,
 		},
@@ -55,12 +48,6 @@ func TestConfig_Validate(t *testing.T) {
 					Name:     "db",
 					User:     "usr",
 					Password: "pass",
-				},
-				Nats: NatsCfg{
-					Address:     "addr",
-					ClusterID:   "cluster",
-					ClientID:    "client",
-					TopicPrefix: "prefix",
 				},
 			},
 			wantErr: errors.New("Listener.SlotName: non zero value required;Listener.RefreshConnection: non zero value required"),
@@ -78,12 +65,6 @@ func TestConfig_Validate(t *testing.T) {
 					Name:     "db",
 					User:     "usr",
 					Password: "pass",
-				},
-				Nats: NatsCfg{
-					Address:     "addr",
-					ClusterID:   "cluster",
-					ClientID:    "client",
-					TopicPrefix: "prefix",
 				},
 			},
 			wantErr: errors.New("Database.Host: non zero value required;Database.Port: non zero value required"),
@@ -104,11 +85,6 @@ func TestConfig_Validate(t *testing.T) {
 					User:     "usr",
 					Password: "pass",
 				},
-				Nats: NatsCfg{
-					ClusterID:   "cluster",
-					ClientID:    "client",
-					TopicPrefix: "prefix",
-				},
 			},
 			wantErr: errors.New("Nats.Address: non zero value required"),
 		},
@@ -118,7 +94,6 @@ func TestConfig_Validate(t *testing.T) {
 			c := Config{
 				Listener: tt.fields.Listener,
 				Database: tt.fields.Database,
-				Nats:     tt.fields.Nats,
 			}
 			err := c.Validate()
 			if err == nil {

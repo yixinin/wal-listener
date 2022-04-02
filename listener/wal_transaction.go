@@ -2,11 +2,13 @@ package listener
 
 import (
 	"errors"
+	"fmt"
 	"strconv"
 	"strings"
 	"time"
 
 	"github.com/google/uuid"
+	"github.com/ihippik/wal-listener/config"
 	"github.com/jackc/pgx/pgtype"
 	"github.com/sirupsen/logrus"
 )
@@ -129,7 +131,7 @@ func (w WalTransaction) CreateActionData(
 // CreateEventsWithFilter filter WAL message by table,
 // action and create events for each value.
 func (w *WalTransaction) CreateEventsWithFilter(
-	tableMap map[string][]string) []Event {
+	tableMap map[string]config.Table) []Event {
 	var events []Event
 
 	for _, item := range w.Actions {
@@ -148,9 +150,12 @@ func (w *WalTransaction) CreateEventsWithFilter(
 			EventTime: *w.CommitTime,
 		}
 
-		actions, validTable := tableMap[item.Table]
-
-		validAction := inArray(actions, item.Kind.string())
+		table, validTable := tableMap[item.Table]
+		event.Topic = table.Topic
+		if table.Topic == "" {
+			event.Topic = fmt.Sprintf("%s.%s", item.Schema, item.Table)
+		}
+		validAction := inArray(table.Actions, item.Kind.string())
 		if validTable && validAction {
 			events = append(events, event)
 		} else {

@@ -243,15 +243,14 @@ func (l *Listener) Stream(ctx context.Context) {
 				if tx.CommitTime != nil {
 					natsEvents := tx.CreateEventsWithFilter(l.config.Database.Filter.Tables)
 					for _, event := range natsEvents {
-						subjectName := event.GetSubjectName(l.config.Nats.TopicPrefix)
-						if err = l.publisher.Publish(subjectName, event); err != nil {
+						if err = l.publisher.Publish(event.Topic, event); err != nil {
 							l.errChannel <- fmt.Errorf("%v: %w", ErrPublishEvent, err)
 
 							continue
 						}
 
 						logrus.
-							WithField("subject", subjectName).
+							WithField("subject", event.Topic).
 							WithField("action", event.Action).
 							WithField("lsn", l.readLSN()).
 							Infoln("event was send")

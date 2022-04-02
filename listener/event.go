@@ -29,21 +29,7 @@ type Event struct {
 	Action    string                 `json:"action"`
 	Data      map[string]interface{} `json:"data"`
 	EventTime time.Time              `json:"commitTime"`
-}
-
-// Publish serializes the event and publishes it on the bus.
-func (n NatsPublisher) Publish(subject string, event Event) error {
-	msg, err := event.MarshalJSON()
-	if err != nil {
-		return fmt.Errorf("marshal err: %w", err)
-	}
-
-	return n.conn.Publish(subject, msg)
-}
-
-// NewNatsPublisher return new NatsPublisher instance.
-func NewNatsPublisher(conn stan.Conn) *NatsPublisher {
-	return &NatsPublisher{conn: conn}
+	Topic     string                 `json:"-"`
 }
 
 // GetSubjectName creates subject name from the prefix, schema and table name.

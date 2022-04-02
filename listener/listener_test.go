@@ -504,11 +504,13 @@ func TestListener_Stream(t *testing.T) {
 					},
 					Database: config.DatabaseCfg{
 						Filter: config.FilterStruct{
-							Tables: map[string][]string{"users": {"insert"}},
+							Tables: map[string]config.Table{
+								"users": {
+									Actions: []string{"insert"},
+									Topic:   "mem_sync",
+								},
+							},
 						},
-					},
-					Nats: config.NatsCfg{
-						TopicPrefix: "pre_",
 					},
 				},
 				slotName:   "myslot",
@@ -539,11 +541,13 @@ func TestListener_Stream(t *testing.T) {
 					},
 					Database: config.DatabaseCfg{
 						Filter: config.FilterStruct{
-							Tables: map[string][]string{"users": {"insert"}},
+							Tables: map[string]config.Table{
+								"users": {
+									Actions: []string{"insert"},
+									Topic:   "mem_sync",
+								},
+							},
 						},
-					},
-					Nats: config.NatsCfg{
-						TopicPrefix: "pre_",
 					},
 				},
 				slotName:   "myslot",
@@ -600,11 +604,13 @@ func TestListener_Stream(t *testing.T) {
 					},
 					Database: config.DatabaseCfg{
 						Filter: config.FilterStruct{
-							Tables: map[string][]string{"users": {"insert"}},
+							Tables: map[string]config.Table{
+								"users": {
+									Actions: []string{"insert"},
+									Topic:   "mem_sync",
+								},
+							},
 						},
-					},
-					Nats: config.NatsCfg{
-						TopicPrefix: "pre_",
 					},
 				},
 				slotName:   "myslot",
@@ -672,11 +678,13 @@ func TestListener_Stream(t *testing.T) {
 					},
 					Database: config.DatabaseCfg{
 						Filter: config.FilterStruct{
-							Tables: map[string][]string{"users": {"insert"}},
+							Tables: map[string]config.Table{
+								"users": {
+									Actions: []string{"insert"},
+									Topic:   "mem_sync",
+								},
+							},
 						},
-					},
-					Nats: config.NatsCfg{
-						TopicPrefix: "pre_",
 					},
 				},
 				slotName:   "myslot",
@@ -777,11 +785,13 @@ func TestListener_Stream(t *testing.T) {
 					},
 					Database: config.DatabaseCfg{
 						Filter: config.FilterStruct{
-							Tables: map[string][]string{"users": {"insert"}},
+							Tables: map[string]config.Table{
+								"users": {
+									Actions: []string{"insert"},
+									Topic:   "mem_sync",
+								},
+							},
 						},
-					},
-					Nats: config.NatsCfg{
-						TopicPrefix: "pre_",
 					},
 				},
 				slotName:   "myslot",

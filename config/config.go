@@ -10,7 +10,6 @@ import (
 type Config struct {
 	Listener ListenerCfg
 	Database DatabaseCfg
-	Nats     NatsCfg
 	Logger   LoggerCfg
 }
 
@@ -23,12 +22,6 @@ type ListenerCfg struct {
 }
 
 // NatsCfg path of the NATS config.
-type NatsCfg struct {
-	Address     string `valid:"required"`
-	ClusterID   string `valid:"required"`
-	ClientID    string `valid:"required"`
-	TopicPrefix string `valid:"required"`
-}
 
 // LoggerCfg path of the logger config.
 type LoggerCfg struct {
@@ -49,7 +42,12 @@ type DatabaseCfg struct {
 
 // FilterStruct incoming WAL message filter.
 type FilterStruct struct {
-	Tables map[string][]string
+	Tables map[string]Table
+}
+
+type Table struct {
+	Actions []string
+	Topic   string
 }
 
 // Validate config data.
