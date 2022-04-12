@@ -137,18 +137,18 @@ ProcessLoop:
 		select {
 		case <-refresh.C:
 			if !l.replicator.IsAlive() {
-				logrus.Fatalln(errReplConnectionIsLost)
+				return errReplConnectionIsLost
 			}
 
 			if !l.repository.IsAlive() {
-				logrus.Fatalln(errConnectionIsLost)
+				return errConnectionIsLost
 			}
 
 		case err := <-l.errChannel:
 			if errors.As(err, &serviceErr) {
 				cancelFunc()
 
-				logrus.Fatalln(err)
+				return err
 			} else {
 				logrus.Errorln(err)
 			}
